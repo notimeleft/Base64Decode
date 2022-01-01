@@ -706,23 +706,33 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="base64Decode" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="43"/>
+                        <rect key="frame" x="0.0" y="0.0" width="558" height="251"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fillEqually" orientation="vertical" alignment="centerX" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xRF-4H-wLd">
-                                <rect key="frame" x="-60" y="-8" width="600" height="60"/>
+                                <rect key="frame" x="-21" y="76" width="600" height="100"/>
                                 <subviews>
-                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="puP-OV-HOn">
-                                        <rect key="frame" x="0.0" y="35" width="600" height="25"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" placeholderString="Enter your base 64 string" drawsBackground="YES" id="TGO-V8-XAA">
-                                            <font key="font" usesAppearanceFont="YES"/>
-                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xch-uO-lSz">
+                                        <rect key="frame" x="134" y="73" width="333" height="26"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" borderStyle="bezel" alignment="center" title="Copy your Base64 String, then tap 'Decode' below" bezelStyle="round" id="gtI-4z-w9E">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iNS-fB-53h">
+                                        <rect key="frame" x="211" y="29" width="178" height="39"/>
+                                        <buttonCell key="cell" type="push" title="Paste Your Base64 Text" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QP6-Tg-ObZ">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="didTapPasteBoard:" target="XfG-lQ-9wD" id="0lB-Lo-EbW"/>
+                                        </connections>
+                                    </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kNg-v9-K3p">
-                                        <rect key="frame" x="256" y="-7" width="89" height="37"/>
-                                        <buttonCell key="cell" type="push" title="Visit Link" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iRD-f3-jjZ">
+                                        <rect key="frame" x="277" y="-7" width="46" height="38"/>
+                                        <buttonCell key="cell" type="push" title="..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iRD-f3-jjZ">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -733,14 +743,15 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="600" id="EG2-uc-SMd"/>
-                                    <constraint firstAttribute="height" constant="60" id="Pha-YJ-n7Q"/>
-                                    <constraint firstItem="puP-OV-HOn" firstAttribute="width" secondItem="xRF-4H-wLd" secondAttribute="width" id="kY3-M0-4jn"/>
+                                    <constraint firstAttribute="height" constant="100" id="Pha-YJ-n7Q"/>
                                 </constraints>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
+                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
@@ -752,13 +763,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="base64TextField" destination="puP-OV-HOn" id="0Wx-if-uly"/>
                         <outlet property="linkButton" destination="kNg-v9-K3p" id="wPL-sK-5RB"/>
+                        <outlet property="pasteButton" destination="iNS-fB-53h" id="jrK-xb-KOd"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="300" y="769.5"/>
         </scene>
     </scenes>
 </document>

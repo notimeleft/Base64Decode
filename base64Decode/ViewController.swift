@@ -24,10 +24,10 @@ class ViewController: NSViewController {
     private var linkTitle: String {
         return url?.absoluteString ?? "invalid base64 value!"
     }
-    private var count = 1
+    private var count = 0
     private var accessCount: Int {
         count += 1
-        return count-1
+        return count
     }
     
     override func viewDidLoad() {

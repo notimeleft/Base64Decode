@@ -4,7 +4,7 @@ Yes, many websites and a two-or-three-liner in pyton/terminal can do the same jo
 
 But a MacOS app can detect your paste board content and generate a neat web link / chrome launcher! 
 
-I actually learned a lot in this dumb little project (coming from 100% iOS development previously):
+I actually learned a lot from this dumb little project (coming from 100% iOS development previously):
 
 - Interprocess communication between NSPasteBoard and sandboxed app 
 
@@ -23,7 +23,7 @@ I actually learned a lot in this dumb little project (coming from 100% iOS devel
 	- etc.
 
 - decoding a string via String(data:encoding): 
-	- we can decode our input string into a Data object with base64-encodeding
+	- we can decode our input string into a Data object with base64-encoding
 	- and then pass this data object into the above initializer. Voila! 
 
 - last but not least, executing a bash command via the Process class:

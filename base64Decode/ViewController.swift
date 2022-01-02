@@ -37,11 +37,11 @@ class ViewController: NSViewController {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSApplication.willBecomeActiveNotification, object: nil)
     }
     
     func setupPasteBoard(){
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshPasteBoard), name: NSApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshPasteBoard), name: NSApplication.willBecomeActiveNotification, object: nil)
         pasteBoardLabel.preferredMaxLayoutWidth = 1000
         pasteBoardLabel.maximumNumberOfLines = 3
         pasteBoardLabel.isEditable = false

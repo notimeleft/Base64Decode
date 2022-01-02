@@ -8,27 +8,44 @@
 import Cocoa
 
 class ViewController: NSViewController {
-
-    @IBOutlet weak var pasteButton: NSButton!
-    @IBOutlet weak var linkButton: NSButton!
-    var url: URL?
-        
+    
+    @IBOutlet weak var refreshPasteBoardButton: NSButton!
+    @IBOutlet weak var pasteBoardLabel: NSTextField!
+    @IBOutlet weak var urlLinkButton: NSButton!
+    
+    private var pasteBoardContent: String? {
+        return NSPasteboard.general.string(forType: .string)
+    }
+    private var url: URL? {
+        guard let validContent = pasteBoardContent else { return nil }
+        return generateURL(from: validContent)
+    }
+    
+    private var linkTitle: String {
+        return url?.absoluteString ?? "invalid base64 value!"
+    }
+    private var count = 1
+    private var accessCount: Int {
+        count += 1
+        return count-1
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        if let validLink = generateLink() {
-            pasteButton.title = "base64 decoded below:"
-            linkButton.title = validLink
-        } else {
-            linkButton.title = "..."
-        }
+        setupPasteBoard()
     }
     
-    @IBAction func didTapPasteBoard(_ sender: NSButton) {
-        linkButton.title = generateLink() ?? "invalid link!"
-        pasteButton.title = "decode"
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSApplication.didBecomeActiveNotification, object: nil)
     }
     
+    func setupPasteBoard(){
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshPasteBoard), name: NSApplication.didBecomeActiveNotification, object: nil)
+        pasteBoardLabel.preferredMaxLayoutWidth = 1000
+        pasteBoardLabel.maximumNumberOfLines = 3
+        pasteBoardLabel.isEditable = false
+    }
     
     @IBAction func didTapLink(_ sender: NSButton) {
         if let validLink = url?.absoluteString {
@@ -46,11 +63,14 @@ extension ViewController {
         return URL(string:validInput)
     }
     
-    func generateLink() -> String? {
-        if let pasteBoardContent = NSPasteboard.general.string(forType: .string) {
-            url = generateURL(from: pasteBoardContent)
+    @objc func refreshPasteBoard() {
+        print("!!! \(accessCount) \(pasteBoardContent ?? "pasteboard empty")")
+        if let pasteBoardText = pasteBoardContent {
+            pasteBoardLabel.stringValue = pasteBoardText
+            urlLinkButton.title = linkTitle
+        } else {
+            pasteBoardLabel.stringValue = "pasteboard empty"
         }
-        return url?.absoluteString
     }
 }
 
